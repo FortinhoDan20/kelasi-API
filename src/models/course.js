@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const coursSchema = mongoose.Schema({
+const courseSchema = mongoose.Schema({
     name: String,
     volume: {
         hours: String,
@@ -22,5 +22,5 @@ const coursSchema = mongoose.Schema({
 }, {
     timestamps: true
 })
-const Cours = mongoose.model(('Cours', coursSchema))
-module.exports = Cours
+const Course = mongoose.model(('Course', courseSchema))
+module.exports = Course
