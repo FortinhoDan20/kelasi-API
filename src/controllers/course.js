@@ -6,7 +6,7 @@ exports.createCours = async ( req, res ) => {
         const course = new Course(req.body)
         await course.save()
         await activity.createActivity(req.user._id,  req.body.name + " has been created by " + req.user.identity.name + " "+ req.user.identity.lastName , "course created" )
-        res.status(200).send({
+        res.status(201).send({
             state: true,
             message: req.body.name + "has been successfully created",
             data: course
