@@ -6,14 +6,14 @@ const courseSchema = mongoose.Schema({
         hours: String,
         value: Number
     },
-    faculty: {
+    course: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Faculty'
     },
-    department: {
+    promotion: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:'Department'
+        ref:'Promotion'
     },
      flag: {
         type:Boolean,
