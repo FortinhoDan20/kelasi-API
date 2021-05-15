@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const moment = require('moment')
 
 const programSchema = mongoose.Schema({
     course: {
@@ -17,8 +18,18 @@ const programSchema = mongoose.Schema({
         ref: 'Teacher'
     },
     academicYear: String,
-},{
-    timestamps: true
+    createdAt: {
+        type: Date,
+        default: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
+    },
+    updatedAt:{
+        type: Date,
+        default: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
+    },
+    flag: {
+        type: Boolean,
+        default: true
+    }
 })
 const Program = mongoose.model('Program', programSchema)
 module.exports = Program
