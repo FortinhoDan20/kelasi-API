@@ -56,7 +56,7 @@ exports.updatePromotion = async ( req, res ) => {
     }
 }
 
-exports.withdrawPromotion = async ( req, res) => {
+exports.deactivatedPromotion = async ( req, res) => {
     try {
         const promotion = await Promotion.findByIdAndUpdate(req.params.id, { flag: false, updatedAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a') }, { new: true })
         await activity.createActivity(req.user._id,  promotion.name + " has been withdraw by " + req.user.identity.name + " "+ req.user.identity.lastName , "promotion withdraw" )
@@ -88,7 +88,7 @@ exports.getAllRemove = async ( req, res ) => {
         })
     }
 }
-exports.takeBackPromotion = async ( req, res ) => {
+exports.activatedPromotion = async ( req, res ) => {
     try {
         const promotion = await Promotion.findByIdAndUpdate(req.params.id, { flag: true, updatedAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a') }, {new: true})
         await activity.createActivity(req.user._id, promotion.name + " has been take back by " + req.user.identity.name + " " + req.user.identity.lastName, "promotion take back")

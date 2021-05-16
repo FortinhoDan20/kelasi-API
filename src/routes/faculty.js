@@ -6,4 +6,12 @@ const router = new express.Router()
 
 router.post('/add', authUser, createFaculty)
 
+router.get('/', authUser, getAllFaculty)
+
+router.patch('/:id', authUser, updateFaculty)
+
+router.patch('/deactivate-faculty/:id', authUser, deactivatedFaculty)
+
+router.get('/deactivate-faculty/', authUser, getAllDeactivate)
+
 module.exports = router
