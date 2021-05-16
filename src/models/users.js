@@ -61,11 +61,11 @@ const userSchema = mongoose.Schema({
         },
     ],
     createdAt: {
-        type: Date,
+        type: String,
         default: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
     },
-    updatedAt:{
-        type: Date,
+    updatedAt: {
+        type: String,
         default: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
     }
 })
@@ -106,11 +106,13 @@ userSchema.statics.findByCredentials = async (username, password) => {
     if (!isMatch) {
         throw new Error("Unable to login check your password or your email")
     }
-    const userActivated = await Users.findOne({ flag: true })
+    const userActivated = await Users.findOne({flag: true})
 
-     if(!userActivated ) {
-         throw  new Error("unable to log in your account is disabled")
-     }
+    if (!userActivated) {
+        throw  new Error("unable to log in your account is disabled")
+
+    }
+
     return user
 }
 

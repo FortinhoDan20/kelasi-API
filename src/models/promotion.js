@@ -8,6 +8,11 @@ const promotionSchema = mongoose.Schema({
         required: true,
         ref: 'Faculty'
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Users'
+    },
     department: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Department'

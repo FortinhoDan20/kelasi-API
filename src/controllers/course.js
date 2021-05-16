@@ -3,7 +3,7 @@ const activity = require('./activity')
 
 exports.createCours = async ( req, res ) => {
     try {
-        const course = new Course(req.body)
+        const course = new Course({...req.body, user:req.user._id })
         await course.save()
         await activity.createActivity(req.user._id,  req.body.name + " has been created by " + req.user.identity.name + " "+ req.user.identity.lastName , "course created" )
         res.status(201).send({

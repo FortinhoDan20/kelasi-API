@@ -12,6 +12,11 @@ const programSchema = mongoose.Schema({
         required: true,
         ref: 'Promotion'
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Users'
+    },
     teacher: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,

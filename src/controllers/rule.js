@@ -6,7 +6,7 @@ exports.createRole = async ( req, res ) => {
         await role.save()
         res.status(201).send({
             state: true,
-            message :"The user role " + req.body.ruleName + "has just been successfully created",
+            message :"The user role " + req.body.ruleName + " has just been successfully created",
             data: role
 
         })

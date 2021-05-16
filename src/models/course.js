@@ -11,6 +11,11 @@ const courseSchema = mongoose.Schema({
         required: true,
         ref: 'Faculty'
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Users'
+    },
     promotion: {
         type: mongoose.Schema.Types.ObjectId,
         ref:'Promotion'

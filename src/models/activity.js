@@ -10,7 +10,7 @@ const activitySchema = mongoose.Schema({
     comment: String,
     status: String,
     createdAt: {
-        type: Date,
+        type: String,
         default: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
     }
 })

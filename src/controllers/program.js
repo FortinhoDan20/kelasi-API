@@ -10,6 +10,7 @@ exports.createProgram = async (req, res ) => {
         const program = new Program({
             ...req.body,
             academicYear: academicYear,
+            user: req.user._id,
             createdAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a'),
             updatedAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
         })

@@ -6,8 +6,7 @@ exports.createDepartment = async (req, res ) => {
     try {
         const department = new Department({
             ...req.body,
-            createdAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a'),
-            updatedAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
+            user: req.user._id
         })
         await activity.createActivity(req.user._id,  req.body.name + " has been created by " + req.user.identity.name + " "+ req.user.identity.lastName , "department created" )
         await department.save()

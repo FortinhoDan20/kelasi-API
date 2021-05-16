@@ -47,6 +47,11 @@ const teacherSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Users'
+    },
     flag: {
         type: Boolean,
         default: true

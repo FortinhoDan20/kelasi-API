@@ -5,6 +5,7 @@ require('./db/mongoose')
 
 const routerRule = require('./routes/rules')
 const routerUser = require('./routes/users')
+const routerFaculty = require('./routes/faculty')
 const app = express()
 app.use(cors())
 

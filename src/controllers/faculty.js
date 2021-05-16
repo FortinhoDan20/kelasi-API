@@ -3,7 +3,7 @@ const activity = require('./activity')
 
 exports.createFaculty = async ( req, res ) => {
     try{
-        const faculty = new Faculty(req.body)
+        const faculty = new Faculty({...req.body, user:req.user._id })
         await activity.createActivity(req.user._id, req.body.name + " was created by " + req.user.identity.name + " "+ req.user.identity.lastName , "new faculty created" )
         await faculty.save()
         res.status(201).send({
@@ -53,7 +53,7 @@ exports.updateFaculty = async ( req, res ) => {
     }
 }
 
-exports.withdrawFaculty = async ( req, res) => {
+exports.deactivatedFaculty = async ( req, res) => {
     try {
         const faculty = await Faculty.findByIdAndUpdate(req.params.id, { flag: false }, { new: true })
         await activity.createActivity(req.user._id,  faculty.name + " has been withdraw by " + req.user.identity.name + " "+ req.user.identity.lastName , "faculty withdraw" )
@@ -66,7 +66,7 @@ exports.withdrawFaculty = async ( req, res) => {
 
     }
 }
-exports.getAllRemove = async ( req, res ) => {
+exports.getAllDeactivate = async ( req, res ) => {
     try {
         const faculty = await Faculty.find({ flag: false })
         res.status(200).send({
