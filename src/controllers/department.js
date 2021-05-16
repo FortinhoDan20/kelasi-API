@@ -56,7 +56,7 @@ exports.updateDepartment= async ( req, res ) => {
     }
 }
 
-exports.withdrawPromotion = async ( req, res) => {
+exports.deactivatePromotion = async ( req, res) => {
     try {
         const department = await Department.findByIdAndUpdate(req.params.id, { flag: false, updatedAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a') }, { new: true })
         await activity.createActivity(req.user._id,  department.name + " has been withdraw by " + req.user.identity.name + " "+ req.user.identity.lastName , "department withdraw" )
@@ -88,7 +88,7 @@ exports.getAllDepartment = async ( req, res ) => {
         })
     }
 }
-exports.takeBackDepartment = async ( req, res ) => {
+exports.activateDepartment = async ( req, res ) => {
     try {
         const department = await Department.findByIdAndUpdate(req.params.id, { flag: true, updatedAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a') }, {new: true})
         await activity.createActivity(req.user._id, department.name + " has been take back by " + req.user.identity.name + " " + req.user.identity.lastName, "department take back")
