@@ -3,7 +3,7 @@ const Activity = require('../models/activity')
 module.exports.createActivity = async ( agent, comment, status) => {
 
     try {
-        const activity = new Activity({ agent: agent, comment : comment , status: status })
+        const activity = new Activity({ users: users, comment : comment , status: status })
         await activity.save()
 
     }catch (e) {

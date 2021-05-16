@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const moment = require('moment')
 const courseSchema = mongoose.Schema({
     name: String,
     volume: {
@@ -18,9 +18,15 @@ const courseSchema = mongoose.Schema({
      flag: {
         type:Boolean,
          default: true
-     }
-}, {
-    timestamps: true
+     },
+    createdAt: {
+        type: Date,
+        default: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
+    },
+    updatedAt:{
+        type: Date,
+        default: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
+    }
 })
 const Course = mongoose.model(('Course', courseSchema))
 module.exports = Course

@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const validator = require("validator")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+const moment = require('moment')
 
 const userSchema = mongoose.Schema({
     identity: {
@@ -59,9 +60,16 @@ const userSchema = mongoose.Schema({
             },
         },
     ],
-}, {
-    timestamps: true
+    createdAt: {
+        type: Date,
+        default: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
+    },
+    updatedAt:{
+        type: Date,
+        default: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
+    }
 })
+
 userSchema.pre("save", async function (next) {
     const user = this
     if (user.isModified("password")) {
@@ -98,7 +106,13 @@ userSchema.statics.findByCredentials = async (username, password) => {
     if (!isMatch) {
         throw new Error("Unable to login check your password or your email")
     }
+    const userActivated = await Users.findOne({ flag: true })
+
+     if(!userActivated ) {
+         throw  new Error("unable to log in your account is disabled")
+     }
     return user
 }
+
 const Users = mongoose.model('Users', userSchema)
 module.exports = Users

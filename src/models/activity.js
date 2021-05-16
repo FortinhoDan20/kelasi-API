@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 const moment = require('moment')
 
 const activitySchema = mongoose.Schema({
-    agent: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'Agent'
+        ref: 'Users'
     },
     comment: String,
     status: String,

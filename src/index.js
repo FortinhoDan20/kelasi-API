@@ -4,6 +4,7 @@ require('dotenv').config()
 require('./db/mongoose')
 
 const routerRule = require('./routes/rules')
+const routerUser = require('./routes/users')
 const app = express()
 app.use(cors())
 
@@ -20,6 +21,7 @@ app.get('/', async (req, res ) => {
 })
 
 app.use('/api/rule', routerRule)
+app.use('/api/users', routerUser)
 
 
 app.listen(port, () => {
