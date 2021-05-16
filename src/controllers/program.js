@@ -4,8 +4,12 @@ const activity = require('./activity')
 
 exports.createProgram = async (req, res ) => {
     try {
+        const lastYear = moment().format('YYYY') - 1
+        const currentYear = moment().format('YYYY')
+        const academicYear = lastYear + " - " + currentYear
         const program = new Program({
             ...req.body,
+            academicYear: academicYear,
             createdAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a'),
             updatedAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
         })
@@ -26,7 +30,10 @@ exports.createProgram = async (req, res ) => {
 
 exports.getAllProgram = async ( req, res ) => {
     try {
-        const program = await Program.find({ flag: true }).populate([ 'promotion', 'course', 'teacher' ])
+        const faculty = req.body.faculty
+        const promotion = req.body.promotion
+
+        const program = await Program.find({faculty: faculty, promotion: promotion, flag: true }).populate([ 'promotion', 'course', 'teacher' ])
         res.status(200).send({
             state: true,
             message:"List of all academic program",
@@ -40,6 +47,7 @@ exports.getAllProgram = async ( req, res ) => {
         })
     }
 }
+
 exports.updateProgram = async ( req, res ) => {
     try {
         const program = await Program.findByIdAndUpdate(req.params.id, {...req.body, updatedAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a')}, { new: true }).populate(['course'])

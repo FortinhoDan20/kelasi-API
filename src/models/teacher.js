@@ -1,4 +1,4 @@
-const mongoose = require ('mongoose')
+const mongoose = require('mongoose')
 const validator = require("validator")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
@@ -98,6 +98,11 @@ teacherSchema.statics.findByCredentials = async (userrname, password) => {
 
     if (!isMatch) {
         throw new Error("Unable to login check your password or your email")
+    }
+    const teacherActivated = await Teacher.findOne({flag: true})
+
+    if (!teacherActivated) {
+        throw  new Error("unable to log in your account is disabled")
     }
     return teacher
 }

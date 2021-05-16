@@ -12,6 +12,15 @@ module.exports.createActivity = async ( agent, comment, status) => {
 
 }
 
+module.exports.teacherActivity = async ( comment, status ) => {
+    try {
+        const activity = new Activity ( { comment: comment, status: status })
+        await activity.save()
+    }catch (e) {
+        console.log(e.message)
+    }
+
+}
 exports.getActivity = async (req, res) => {
     try {
         const activity = await Activity.find({ agent: req.agent._id, }).populate(['agent'])
