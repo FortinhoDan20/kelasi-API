@@ -55,7 +55,7 @@ exports.updateCourse = async ( req, res ) => {
     }
 }
 
-exports.withdrawCourse = async ( req, res) => {
+exports.deactivatedCourse = async ( req, res) => {
     try {
         const course = await Course.findByIdAndUpdate(req.params.id, { flag: false }, { new: true })
         await activity.createActivity(req.user._id,  course.name + " has been withdraw by " + req.user.identity.name + " "+ req.user.identity.lastName , "course withdraw" )
@@ -87,7 +87,7 @@ exports.getAllRemove = async ( req, res ) => {
         })
     }
 }
-exports.takeBackCourse = async ( req, res ) => {
+exports.activatedCourse = async ( req, res ) => {
     try {
         const course = await Course.findByIdAndUpdate(req.params.id, { flag: true }, { new: true })
         await activity.createActivity(req.user._id,  course.name + " has been take back by " + req.user.identity.name + " "+ req.user.identity.lastName , "course take back" )
