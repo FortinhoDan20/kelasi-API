@@ -66,7 +66,7 @@ exports.updateProgram = async ( req, res ) => {
     }
 }
 
-exports.withdrawProgram = async ( req, res) => {
+exports.deactivateProgram = async ( req, res) => {
     try {
         const program = await Program.findByIdAndUpdate(req.params.id, { flag: false, updatedAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a') }, { new: true }).populate(['course'])
         await activity.createActivity(req.user._id,  "The" + program.course.name + " has been withdraw by " + req.user.identity.name + " "+ req.user.identity.lastName , "The" + program.course.name + " course program withdraw" )
@@ -82,7 +82,7 @@ exports.withdrawProgram = async ( req, res) => {
         })
     }
 }
-exports.getAllProgram = async ( req, res ) => {
+exports.getAllProgramDeactivate = async ( req, res ) => {
     try {
         const program = await Program.find({ flag: false })
         res.status(200).send({
@@ -98,7 +98,7 @@ exports.getAllProgram = async ( req, res ) => {
         })
     }
 }
-exports.takeBackProgram = async ( req, res ) => {
+exports.activateProgram = async ( req, res ) => {
     try {
         const program = await Program.findByIdAndUpdate(req.params.id, { flag: true, updatedAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a') }, {new: true})
         await activity.createActivity(req.user._id, program.name + " has been take back by " + req.user.identity.name + " " + req.user.identity.lastName, "department take back")
