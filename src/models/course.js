@@ -25,13 +25,13 @@ const courseSchema = mongoose.Schema({
          default: true
      },
     createdAt: {
-        type: Date,
+        type: String,
         default: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
     },
     updatedAt:{
-        type: Date,
+        type: String,
         default: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
     }
 })
-const Course = mongoose.model(('Course', courseSchema))
+const Course = mongoose.model('Course', courseSchema)
 module.exports = Course

@@ -6,6 +6,11 @@ require('./db/mongoose')
 const routerRule = require('./routes/rules')
 const routerUser = require('./routes/users')
 const routerFaculty = require('./routes/faculty')
+const routerPromotion = require('./routes/promotion')
+const routerCourse = require('./routes/course')
+const routerTeacher = require('./routes/teacher')
+const routerProgram = require('./routes/program')
+const routerDepartment  = require('./routes/department')
 const app = express()
 app.use(cors())
 
@@ -23,6 +28,12 @@ app.get('/', async (req, res ) => {
 
 app.use('/api/rule', routerRule)
 app.use('/api/users', routerUser)
+app.use('/api/faculty', routerFaculty)
+app.use('/api/department', routerDepartment)
+app.use('/api/promotion', routerPromotion)
+app.use('/api/course', routerCourse)
+app.use('/api/teacher', routerTeacher)
+app.use('/api/program', routerProgram)
 
 
 app.listen(port, () => {

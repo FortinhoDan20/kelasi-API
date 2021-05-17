@@ -185,7 +185,7 @@ exports.updateTeacher = async ( req, res ) => {
     }
 }
 
-exports.withdrawTeacher = async ( req, res) => {
+exports.deactivateTeacher = async ( req, res) => {
     try {
         const teacher = await Teacher.findByIdAndUpdate(req.params.id, { flag: false, updatedAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a') }, { new: true }).populate(['course'])
         await activity.teacherActivity( "Teacher" + teacher.identity.name +  " "+ teacher.identity.lastName + " has been withdraw by " + req.user.identity.name + " "+ req.user.identity.lastName ,  " teacher withdraw" )
@@ -201,7 +201,7 @@ exports.withdrawTeacher = async ( req, res) => {
         })
     }
 }
-exports.getAllTeacherWithdraw = async ( req, res ) => {
+exports.getAllTeacherDeactivate = async ( req, res ) => {
     try {
         const teacher = await Teacher.find({ flag: false })
         res.status(200).send({
@@ -217,7 +217,7 @@ exports.getAllTeacherWithdraw = async ( req, res ) => {
         })
     }
 }
-exports.takeBackTeacher = async ( req, res ) => {
+exports.activateTeacher = async ( req, res ) => {
     try {
         const teacher = await Teacher.findByIdAndUpdate(req.params.id, { flag: true, updatedAt: moment().format('dddd MMMM Do YYYY, h:mm:ss a') }, {new: true})
         await activity.teacherActivity("Teacher" + teacher.identity.name +  " " + teacher.identity.lastName + " has been take back by " + req.user.identity.name + " " + req.user.identity.lastName, "teacher take back")
