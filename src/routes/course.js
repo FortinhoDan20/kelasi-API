@@ -1,7 +1,7 @@
 const express = require('express')
 const {authUser} = require('../middlewares/auth')
 const {
-    createCours,
+    createCourse,
     getAllCourse,
     updateCourse,
     deactivatedCourse,
@@ -11,7 +11,7 @@ const {
 
 const router = new express.Router()
 
-router.post('/add', authUser, createCours)
+router.post('/add', authUser, createCourse)
 
 router.get('/', authUser, getAllCourse)
 

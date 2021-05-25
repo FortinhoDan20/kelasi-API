@@ -3,27 +3,25 @@ const moment = require('moment')
 const courseSchema = mongoose.Schema({
     name: String,
     volume: {
-        hours: String,
+        hours: {
+            type: String,
+            default: 'h'
+        },
         value: Number
     },
-    course: {
+    coefficient: Number,
+    department: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'Faculty'
+        ref: 'Department'
     },
+    
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Users'
     },
-    promotion: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'Promotion'
-    },
-     flag: {
-        type:Boolean,
-         default: true
-     },
+
     createdAt: {
         type: String,
         default: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
@@ -31,7 +29,11 @@ const courseSchema = mongoose.Schema({
     updatedAt:{
         type: String,
         default: moment().format('dddd MMMM Do YYYY, h:mm:ss a')
-    }
+    },
+    flag: {
+        type:Boolean,
+         default: true
+     },
 })
 const Course = mongoose.model('Course', courseSchema)
 module.exports = Course

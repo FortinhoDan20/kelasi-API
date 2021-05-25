@@ -7,6 +7,7 @@ const departmentSchema = mongoose.Schema({
         required: true,
         ref: 'Users'
     },
+    shortName: String,
     faculty: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Faculty'

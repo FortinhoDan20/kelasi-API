@@ -9,7 +9,7 @@ exports.createFaculty = async ( req, res ) => {
         res.status(201).send({
             state: true,
             message: req.body.name + " was successfully created",
-            data: activity
+            data: faculty
         })
     }catch (e) {
         res.status(400).send({
