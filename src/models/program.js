@@ -12,6 +12,19 @@ const programSchema = mongoose.Schema({
         required: true,
         ref: 'Promotion'
     },
+    department: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref:'Department'
+    },
+    duration: {
+        starter: Date,
+        end: Date
+    },
+    dayOfCourse:[{
+        day:String,
+        hours: String
+    }],
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
